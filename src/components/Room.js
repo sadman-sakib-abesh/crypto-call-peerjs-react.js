@@ -12,7 +12,27 @@ const [user,setUser]=useState('')
 const videoRef=useRef(null)
 const selfRef=useRef(null)
 const id=nanoid()
- const peer= new Peer(id)
+const ice=[
+    {
+      urls: "stun:openrelay.metered.ca:80",
+    },
+    {
+      urls: "turn:openrelay.metered.ca:80",
+      username: "openrelayproject",
+      credential: "openrelayproject",
+    },
+    {
+      urls: "turn:openrelay.metered.ca:443",
+      username: "openrelayproject",
+      credential: "openrelayproject",
+    },
+    {
+      urls: "turn:openrelay.metered.ca:443?transport=tcp",
+      username: "openrelayproject",
+      credential: "openrelayproject",
+    },
+  ]
+ const peer= new Peer(id,{ "config" : { "iceServers" :ice }} )
  
  
 
